@@ -383,6 +383,7 @@ function! s:InitTypes() abort
         \ {'short' : 'a', 'long' : 'named anchors',       'fold' : 0, 'stl' : 1}
     \ ]
     let s:known_types.html = type_html
+
     " Java {{{3
     let type_java = s:TypeInfo.New()
     let type_java.ctagstype = 'java'
@@ -440,6 +441,25 @@ function! s:InitTypes() abort
         \ ]
     endif
     let s:known_types.javascript = type_javascript
+
+    " Julia {{{3
+    let type_julia = s:TypeInfo.New()
+    let type_julia.ctagstype = 'julia'
+    let type_julia.kinds     = [
+        \ {'short' : 'm', 'long' : 'modules',           'fold' : 0, 'stl' : 1},
+        \ {'short' : 'c', 'long' : 'classes',           'fold' : 0, 'stl' : 1},
+        \ {'short' : 'f', 'long' : 'function',          'fold' : 0, 'stl' : 1},
+        \ {'short' : 'F', 'long' : 'singleton methods', 'fold' : 0, 'stl' : 1}
+    \ ]
+    let type_julia.sro        = '.'
+    let type_julia.kind2scope = {
+        \ 'c' : 'class',
+        \ 'm' : 'module'
+    \ }
+    let type_julia.scope2kind = {
+        \ 'class' : 'c'
+    \ }
+    let s:known_types.julia = type_julia
     " Lisp {{{3
     let type_lisp = s:TypeInfo.New()
     let type_lisp.ctagstype = 'lisp'
@@ -1005,13 +1025,12 @@ function! s:CheckForExCtags(silent) abort
 
     if !exists('g:tagbar_ctags_bin')
         let ctagsbins  = []
-        let ctagsbins += ['ctags-exuberant'] " Debian
+        let ctagsbins += ['ctags'] " Debian
         let ctagsbins += ['exuberant-ctags']
         let ctagsbins += ['exctags'] " FreeBSD, NetBSD
         let ctagsbins += ['/usr/local/bin/ctags'] " Homebrew
         let ctagsbins += ['/opt/local/bin/ctags'] " Macports
         let ctagsbins += ['ectags'] " OpenBSD
-        let ctagsbins += ['ctags']
         let ctagsbins += ['ctags.exe']
         let ctagsbins += ['tags']
         for ctags in ctagsbins
