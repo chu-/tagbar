@@ -446,8 +446,8 @@ function! s:InitTypes() abort
     let type_julia = s:TypeInfo.New()
     let type_julia.ctagstype = 'julia'
     let type_julia.kinds     = [
-        \ {'short' : 'm', 'long' : 'modules',           'fold' : 0, 'stl' : 1},
-        \ {'short' : 'c', 'long' : 'classes',           'fold' : 0, 'stl' : 1},
+        \ {'short' : 'm', 'long' : 'module',           'fold' : 0, 'stl' : 1},
+        \ {'short' : 'c', 'long' : 'classe',           'fold' : 0, 'stl' : 1},
         \ {'short' : 'f', 'long' : 'function',          'fold' : 0, 'stl' : 1},
         \ {'short' : 'F', 'long' : 'singleton methods', 'fold' : 0, 'stl' : 1}
     \ ]
