@@ -8,6 +8,10 @@ Check out the homepage at http://majutsushi.github.io/tagbar/ for more informati
 # Support for additional filetypes
 
 For filetypes that are not supported by Exuberant Ctags check out [the wiki](https://github.com/majutsushi/tagbar/wiki) to see whether other projects offer support for them and how to use them. Please add any other projects/configurations that you find or create yourself so that others can benefit from them, too.
+# Support for Julia
+"No tags found" bug in replacing taglist with tagbar in [chu-/Trinity](https://github.com/chu-/Trinity/).
+Solution:
+=>Add the content of [julia ftdetect](https://github.com/JuliaLang/julia-vim/blob/master/ftdetect/julia.vim) into VIMRUNTIME/filetype.vim. Added line must before lisp due to .jl being regards as a lisp source file )
 
 # Important: If the file structure is displayed wrong
 

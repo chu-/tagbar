@@ -442,24 +442,31 @@ function! s:InitTypes() abort
     endif
     let s:known_types.javascript = type_javascript
 
+
     " Julia {{{3
-    let type_julia = s:TypeInfo.New()
+    let type_julia= s:TypeInfo.New()
     let type_julia.ctagstype = 'julia'
     let type_julia.kinds     = [
-        \ {'short' : 'm', 'long' : 'module',           'fold' : 0, 'stl' : 1},
-        \ {'short' : 'c', 'long' : 'classe',           'fold' : 0, 'stl' : 1},
-        \ {'short' : 'f', 'long' : 'function',          'fold' : 0, 'stl' : 1},
-        \ {'short' : 'F', 'long' : 'singleton methods', 'fold' : 0, 'stl' : 1}
+        \ {'short' : 'f', 'long' : 'methods',           'fold' : 0, 'stl' : 1},
+        \ {'short' : 'c', 'long' : 'classes',           'fold' : 0, 'stl' : 1},
+        \ {'short' : 'm', 'long' : 'modules',           'fold' : 0, 'stl' : 1},
+        \ {'short' : 'F', 'long' : 'singleton methods', 'fold' : 0, 'stl' : 1},
+        \ {'short' : 'd', 'long' : 'descriptions',      'fold' : 0, 'stl' : 1},
+        \ {'short' : 'C', 'long' : 'context',           'fold' : 0, 'stl' : 1},
+        \ {'short' : 'M', 'long' : 'macros',            'fold' : 0, 'stl' : 1},
+        \ {'short' : 't', 'long' : 'types',             'fold' : 0, 'stl' : 1},
+        \ {'short' : 'i', 'long' : 'immutables',        'fold' : 0, 'stl' : 1}
     \ ]
     let type_julia.sro        = '.'
     let type_julia.kind2scope = {
         \ 'c' : 'class',
-        \ 'm' : 'module'
+        \ 'm' : 'class'
     \ }
     let type_julia.scope2kind = {
         \ 'class' : 'c'
     \ }
-    let s:known_types.julia = type_julia
+    let s:known_types.julia= type_julia
+
     " Lisp {{{3
     let type_lisp = s:TypeInfo.New()
     let type_lisp.ctagstype = 'lisp'
@@ -1026,7 +1033,6 @@ function! s:CheckForExCtags(silent) abort
     if !exists('g:tagbar_ctags_bin')
         let ctagsbins  = []
         let ctagsbins += ['ctags'] " Debian
-        let ctagsbins += ['exuberant-ctags']
         let ctagsbins += ['exctags'] " FreeBSD, NetBSD
         let ctagsbins += ['/usr/local/bin/ctags'] " Homebrew
         let ctagsbins += ['/opt/local/bin/ctags'] " Macports
